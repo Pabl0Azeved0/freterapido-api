@@ -3,7 +3,7 @@ from flask import render_template
 from flask import redirect
 from flask import request
 
-from project.api import Caller
+from project.api import api_caller
 
 app = Flask(__name__)
 
@@ -15,15 +15,23 @@ def home():
 @app.route('/search', methods=['POST',])
 def search():
     inputed_data = request.form.get('hashtag')
-    hashtag = inputed_data if inputed_data.startswith('#') else f'#{inputed_data}'
-    tweets = Caller.api_caller(hashtag)
-    return render_template('result.html', hashtag=hashtag, tweets=tweets['statuses'])
+    if not inputed_data:
+        return redirect('/')
+    hashtag = inputed_data if inputed_data.startswith('#')\
+        else f'#{inputed_data}'
+    tweets = api_caller(hashtag)
+    return render_template('result.html',
+                           hashtag=hashtag,
+                           tweets=tweets.get('statuses'))
 
 @app.route('/confirm', methods=['POST',])
 def approve():
     data = request.form.get('selected_tweet')
     name, user, tweet = data.split(';/')
-    return render_template('confirm.html', name=name, user=user, tweet=tweet)
+    return render_template('confirm.html',
+                           name=name,
+                           user=user,
+                           tweet=tweet)
 
 @app.route('/approved', methods=['POST', 'GET'])
 def approved():
