@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+{% block results %}
+    <form method="post" action="confirm">
+        <fieldset>
+            <h2 style="text-align: center">Tweets sobre "{{ hashtag }}"</h2><br>
+            <p style="text-align: center">Para aprovar selecione um dos Tweets abaixo e depois clique em aprovar.</p>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped mb-0" style="max-width: 80%; margin-left: 10%; position: relative; overflow: auto; display: block; height: 300px">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Usuário</th>
+                        <th scope="col">Tweet</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tweet in tweets %}
+                        <tr>
+                            <th scope="row"><input type="radio" class="hashtag" id="hashtag_select" name="selected_tweet"
+                                                   value="{{ tweet.user.name }};/{{ tweet.user.screen_name }};/{{ tweet.text }}"></th>
+                            <td>{{ tweet.user.name }}</td>
+                            <td>@{{ tweet.user.screen_name }}</td>
+                            <td>{{ tweet.text }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="save-body" style="margin-left: 10%">
+                <button type="button" id="cancel" class="btn btn-primary" style="background-color: #ff0000" onclick="goBack()">Voltar</button>
+                <button type="submit" id="submit_button" class="btn btn-primary" style="background-color: #4cae4c" disabled>Aprovar</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

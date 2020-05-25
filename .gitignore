@@ -1,0 +1,23 @@
+*.pyc
+*.log*
+__pycache__/
+.idea
+project/documents/
+project/media/
+.DS_Store
+.idea/
+.env
+/venv
+.coverage
+static/coverage
+staticfiles/
+.DS_Store
+yarn-error.log
+yarn.lock
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.vscode
