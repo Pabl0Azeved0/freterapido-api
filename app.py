@@ -10,10 +10,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+    """
+    Home page from the app, root URL.
+    :return:
+    """
     return render_template('home.html')
 
 @app.route('/search', methods=['POST',])
 def search():
+    """
+    Search method caller, querying in twitter api to fetch data.
+    :return:
+    """
     inputed_data = request.form.get('hashtag')
     if not inputed_data:
         return redirect('/')
@@ -22,10 +30,15 @@ def search():
     tweets = api_caller(hashtag)
     return render_template('result.html',
                            hashtag=hashtag,
-                           tweets=tweets.get('statuses'))
+                           tweets=tweets.json().get('statuses'))
 
 @app.route('/confirm', methods=['POST',])
 def approve():
+    """
+    Confirmation method where asks the user to confirm and validated
+    the selected option
+    :return:
+    """
     data = request.form.get('selected_tweet')
     name, user, tweet = data.split(';/')
     return render_template('confirm.html',
@@ -35,6 +48,13 @@ def approve():
 
 @app.route('/approved', methods=['POST', 'GET'])
 def approved():
+    """
+    Method where the approved choice comes, in this test app we simple show
+    to the user a thanks message, but in production usage you can modify
+    this method to make a request and send data to another endpoint.
+    You would need to change the parameter received in this route.
+    :return:
+    """
     confirmed = request.form.get('confirm')
     if not confirmed:
         return redirect('/')
