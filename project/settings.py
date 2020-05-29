@@ -6,6 +6,4 @@ passed as variable, in this app we only need the token Bearer,
 but if the app grows, this file will be more needed.
 """
 
-token_bearer = 'Bearer AAAAAAAAAAAAAAAAAAAAAO5rEgEAAAAAY6XQhD%' \
-               '2Fv8RYGpDAFDwLAzAJGMyk%3DOVRe9YusS1LHKFlUOwgKp' \
-               'XCpUEtuYk7fxuuAhbV00pNwXf17Po'
+token_bearer = 'create your token bearar in twitter.api'
