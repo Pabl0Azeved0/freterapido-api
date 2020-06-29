@@ -1,10 +1,10 @@
-# Globo-Desafio
+# Twitter-api
 
-#### Desafio:
+#### Twitter api example
   **Criar uma aplicação controle que receba tweets de determinada hashtag configurável e moderar-los**
 
 
-Este desafio foi feito utilizando as tecnologias Python, Flask, Bootstrap e Docker, portanto para executar este código será necessário no mínimo que você tenha Python e Docker instalados no seu computador, caso não os tenha ainda aqui estão alguns links úteis:
+Esta api foi feita utilizando as tecnologias Python, Flask, Bootstrap e Docker, portanto para executar este código será necessário no mínimo que você tenha Python e Docker instalados no seu computador, caso não os tenha ainda aqui estão alguns links úteis:
 
 * **[Documentação oficial do Docker](https://docs.docker.com/get-docker/)**
 * **[Site oficial do Python](https://python.org.br/)**
@@ -33,4 +33,6 @@ Pronto, sua aplicação está rodando e pronta para ser usada, basta clicar no l
 make
 ```
 
-Ao executar este código aparecerá na sua tela 2 comandos que eu deixei pré-gravados no Makefile, um deles chamado 'make build' e outro chamado 'make run', os comandos anteriormente mencionados foram gravados nestes atalhos respectivamente para facilitar o uso, espero que tenha sido útil de alguma forma.
+Ao executar este código aparecerá na sua tela 2 comandos que eu deixei pré-gravados no Makefile, um deles chamado 'make build' e outro chamado 'make run', os comandos anteriormente mencionados foram gravados nestes atalhos respectivamente para facilitar o uso.
+
+Esta é uma api exemplo para ser usada como forma de tirar dúvida, é necessário um token feito na área de developer do próprio site do twitter, é bem intuitivo.
