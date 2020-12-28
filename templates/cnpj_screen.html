@@ -1,0 +1,18 @@
+{% extends 'template.html' %}
+{% block results %}
+    <form method="post" action="quote">
+        <fieldset>
+            <h2 style="text-align: center">CNPJ: {{ hashtag }}</h2><br>
+            <p style="text-align: center">JSON abaixo:</p>
+            <pre style="word-wrap: break-word; white-space: pre-wrap;">{{ result | tojson }}</pre>
+
+        </fieldset>
+        <div class="input-group" style="width: 40%; margin-left: 30%">
+            <textarea class="form-control" id="cnpj_json" name="cnpj_json" placeholder="Testing here.." style="width: 100%; margin-top: 5%; height: 15em;">{{ test_json }}</textarea>
+        </div>
+        <div class="save-body" style="margin-left: 46%;margin-top: 20px;margin-bottom: 2%;">
+            <button type="button" id="cancel" class="btn btn-primary" style="background-color: #ff0000" onclick="goBack()">Voltar</button>
+            <button type="submit" id="submit_button" class="btn btn-primary" style="background-color: #4cae4c">Enviar</button>
+        </div>
+    </form>
+{% endblock %}

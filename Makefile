@@ -1,5 +1,5 @@
 message:
-	@echo "make build: levantar o container; make run: rodar ele"
+	@echo "make build: levantar o container;\nmake run: rodar ele"
 
 build:
 	docker build -t flask-app:latest .
