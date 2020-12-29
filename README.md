@@ -1,6 +1,6 @@
 # Freterapido-api
 
-  #####Criar uma api qual receba um CNPJ e faça consulta na [RECEITAWS](https://receitaws.com.br/api) dando um retorno para o usuário. Assim como receber um JSON e fazer uma cotação fictícia na rota do [FRETERAPIDO](https://freterapido.com/sandbox/api/external/embarcador/v1/quote-simulator) 
+##### Criar uma api qual receba um CNPJ e faça consulta na [RECEITAWS](https://receitaws.com.br/api) dando um retorno para o usuário. Assim como receber um JSON e fazer uma cotação fictícia na rota do [FRETERAPIDO](https://freterapido.com/sandbox/api/external/embarcador/v1/quote-simulator) 
 
 
 Esta api foi feita utilizando as tecnologias Python, Flask, Bootstrap e Docker, portanto para executar este código será necessário no mínimo que você tenha Python e Docker instalados no seu computador, caso não os tenha ainda aqui estão alguns links úteis:
