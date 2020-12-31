@@ -33,3 +33,30 @@ make
 ```
 
 Ao executar este código aparecerá na sua tela 2 comandos que eu deixei pré-gravados no Makefile, um deles chamado 'make build' e outro chamado 'make run', os comandos anteriormente mencionados foram gravados nestes atalhos respectivamente para facilitar o uso.
+
+## Utilização da API
+
+Esta API têm duas rotas, uma delas é:
+
+
+```
+http:0.0.0.0:8000/cnpj/{number}
+```
+
+Onde aceita apenas métodos GET e será necessário passar no lugar de '{number}' um número de CNPJ que você queira como parametro, conforme exemplo em request feito pelo terminal abaixo:
+
+![all text](https://i.imgur.com/i8qn5TN.png)
+
+É claro, você é livre para usar o método de request que quiser, este foi só um exemplo, seguindo a segunda e última rota é:
+
+```
+http:0.0.0.0:8000/quote
+```
+
+Nesta serão aceitos requests apenas no método POST, enviando um JSON com as informações necessárias aparecerá o retorno desejado.
+
+####Como uma nota: 
+
+Notei dois pontos durante este desafio, o primeiro é que na [documentação](https://dev.freterapido.com/api-ecommerce.html#!#content_simulacao) mostra claramente que no destinatário se o 'tipo_pessoa' for 2, então é pessoa jurídica e serão obrigatórios outros 2 campos, mas ao testar colocando tipo 1 e ainda assim os campos de cnpj e inscrição estadual (que são obrigatórios apenas para pessoa jurídica) a API não retorna erro, deixa acontecer. O campo cpf_cnpj era pra ser obrigatório nos 2 casos, mas como na documentação diz que só é obrigatório no caso de 'tipo_pessoa' = 2, deixei sem tratativa pra isto, mas na minha visão seria bom dar uma olhada nisto.
+
+O segundo ponto, no PDF, onde consta o link da URL para requisição do POST, se você clicar coloca um '/sandbox/' no meio da URL depois de '.com' e antes de '/api/' quando a URL que está escrita não tem sandbox, seria bom consertar o link no PDF para futuros desafios. 

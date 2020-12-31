@@ -8,8 +8,7 @@ def receitaws_api(param):
     :param param:
     :return:
     """
-    data = ''.join(filter(str.isdigit, param))
-    url = f'https://www.receitaws.com.br/v1/cnpj/{data}'
+    url = f'https://www.receitaws.com.br/v1/cnpj/{param}'
     headers = {
         'Content-Type': 'application/json',
     }
@@ -27,6 +26,6 @@ def freterapido_api(param):
     headers = {
         'Content-Type': 'application/json',
     }
-    response = requests.post(url, json=json.loads(param), headers=headers)
+    response = requests.post(url, json=param, headers=headers)
     return response
 
