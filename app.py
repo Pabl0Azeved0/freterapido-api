@@ -53,6 +53,8 @@ def approve():
         if errors:
             return jsonify(errors), 403
         response = freterapido_api(data)
+        if response.status_code != 200:
+            return jsonify(json.loads(response.text)), response.status_code
         formated_response = formatted_data(json.loads(response.text))
         return jsonify(formated_response), 200
     except Exception as err:
@@ -140,22 +142,28 @@ def validate_data(data):
                     if secret != '588604ab3':
                         errors.append(
                             'Field codigo_plataforma is wrong, please correct or clear it.')
+                        continue
                 elif val == 'codigo_plataforma':
                     data.update({'codigo_plataforma': '588604ab3'})
+                    continue
                 if secret and val == 'token':
                     if secret != 'c8359377969ded682c3dba5cb967c07b':
                         errors.append(
                             'Field token is wrong, please correct or clear it.')
+                        continue
                 elif val == 'token':
                     data.update({'token': 'c8359377969ded682c3dba5cb967c07b'})
-        if key_exists:
-            if key == 'remetente':
-                value_exists = data.get(key).get(value or errors.append(
-                    f'Field required {value} is missing.'))
+                    continue
+        if key == 'remetente':
+            if key_exists:
+                value_exists = data.get(key).get(value)
                 if not isinstance(value_exists, str) and len(value_exists)!=14:
                     errors.append(
                         f'{value} field needs to be numeric str and 14 characters long.')
-            elif key == 'destinatario':
+            else:
+                data.update({'remetente': {'cnpj': '17184406000174'}})
+        elif key == 'destinatario':
+            if key_exists:
                 for val in value:
                     val_exists = data.get(key).get(val or errors.append(
                         f'Field required {val} is missing.'))
@@ -191,7 +199,10 @@ def validate_data(data):
                             if not isinstance(cep, str) and len(cep) > 8:
                                 errors.append(
                                     'Field cep needs to be a string with 8 characters long.')
-            elif key == 'volumes':
+            else:
+                errors.append('Dict destinatario is missing.')
+        elif key == 'volumes':
+            if key_exists:
                 for volume in key_exists:
                     if not isinstance(volume, dict):
                         errors.append(
@@ -206,6 +217,8 @@ def validate_data(data):
                             if not isinstance(number, comparer):
                                 errors.append(
                                     f'Required field {vol_k} needs to be {"an integer" if comparer == int else "a float"} number and not {number}.')
+            else:
+                errors.append('List volumes is missing.')
     return errors
 
 
