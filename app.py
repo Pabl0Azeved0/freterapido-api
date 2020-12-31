@@ -136,10 +136,18 @@ def validate_data(data):
             for val in value:
                 secret = data.get(
                     val or errors.append(f'Field required {val} is missing.'))
-                if val == 'codigo_plataforma' and secret != '588604ab3':
-                    errors.append('Field codigo_plataforma is wrong.')
-                elif val == 'token' and secret != 'c8359377969ded682c3dba5cb967c07b':
-                    errors.append('Field token is wrong.')
+                if secret and val == 'codigo_plataforma':
+                    if secret != '588604ab3':
+                        errors.append(
+                            'Field codigo_plataforma is wrong, please correct or clear it.')
+                elif val == 'codigo_plataforma':
+                    data.update({'codigo_plataforma': '588604ab3'})
+                if secret and val == 'token':
+                    if secret != 'c8359377969ded682c3dba5cb967c07b':
+                        errors.append(
+                            'Field token is wrong, please correct or clear it.')
+                elif val == 'token':
+                    data.update({'token': 'c8359377969ded682c3dba5cb967c07b'})
         if key_exists:
             if key == 'remetente':
                 value_exists = data.get(key).get(value or errors.append(
