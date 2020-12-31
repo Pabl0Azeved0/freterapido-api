@@ -159,7 +159,7 @@ def validate_data(data):
                 value_exists = data.get(key).get(value)
                 if not isinstance(value_exists, str) and len(value_exists)!=14:
                     errors.append(
-                        f'{value} field needs to be numeric str and 14 characters long.')
+                        f'{value} field needs to be numeric str and 14 characters long, clear or fix it.')
             else:
                 data.update({'remetente': {'cnpj': '17184406000174'}})
         elif key == 'destinatario':
