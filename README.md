@@ -40,7 +40,7 @@ Esta API têm duas rotas, uma delas é:
 
 
 ```
-http://0.0.0.0:8000/cnpj/{number}
+http://localhost:8000/cnpj/{number}
 ```
 
 Onde aceita apenas métodos GET e será necessário passar no lugar de '{number}' um número de CNPJ que você queira como parametro, conforme exemplo em request feito pelo terminal abaixo:
@@ -50,7 +50,7 @@ Onde aceita apenas métodos GET e será necessário passar no lugar de '{number}
 É claro, você é livre para usar o método de request que quiser, este foi só um exemplo, seguindo a segunda e última rota é:
 
 ```
-http://0.0.0.0:8000/quote
+http://localhost:8000/quote
 ```
 
 Nesta serão aceitos requests apenas no método POST, enviando um JSON com as informações necessárias aparecerá o retorno desejado.
