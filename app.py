@@ -37,7 +37,7 @@ def search(cnpj):
         else:
             return jsonify({'Invalid_cnpj': 'Please, give a valid CNPJ'}), 404
     except Exception as err:
-        return jsonify({'Unexpected Error:': err}), 500
+        return jsonify(err), 500
 
 
 @app.route('/quote', methods=['POST',])
@@ -58,7 +58,7 @@ def approve():
         formated_response = formatted_data(json.loads(response.text))
         return jsonify(formated_response), 200
     except Exception as err:
-        return jsonify({'Unexpected error': err}), 500
+        return jsonify(err), 500
 
 
 def formatted_receitaws(data):
@@ -127,8 +127,8 @@ def validate_data(data):
     for key, value in required_fields.items():
         key_exists = data.get(key or errors.append(
             f'Field required {key} is missing.')) if key != 'params' else None
-        if not isinstance(key_exists,
-                          dict) and key != 'volumes' and key != 'params':
+        if key_exists and not isinstance(key_exists,
+                                         dict) and key != 'volumes' and key != 'params':
             errors.append(f'Field {key} is not a dictionary.')
             continue
         elif key == 'volumes' and not isinstance(key_exists, list):
@@ -157,7 +157,8 @@ def validate_data(data):
         if key == 'remetente':
             if key_exists:
                 value_exists = data.get(key).get(value)
-                if not isinstance(value_exists, str) and len(value_exists)!=14:
+                if not isinstance(value_exists, str) and len(
+                        value_exists) != 14:
                     errors.append(
                         f'{value} field needs to be numeric str and 14 characters long, clear or fix it.')
             else:
@@ -168,7 +169,8 @@ def validate_data(data):
                     val_exists = data.get(key).get(val or errors.append(
                         f'Field required {val} is missing.'))
                     if val == 'tipo_pessoa':
-                        if not isinstance(val_exists, int) and len(
+                        if val_exists and not isinstance(val_exists,
+                                                         int) and len(
                                 val_exists) > 1:
                             errors.append(
                                 f'{val} field needs to be an int between 1 and 2.')
